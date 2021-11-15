@@ -23,9 +23,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
     private EntityManager entityManager;
 
     @Transactional
-    public void save(Employee employee) {
+    public Employee save(Employee employee) {
         log.info("Executing method save for the object = {}", employee);
         entityManager.persist(employee);
+        return employee;
     }
 
     @Transactional

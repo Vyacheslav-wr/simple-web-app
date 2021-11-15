@@ -24,21 +24,19 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping(path = "/fire")
+    @DeleteMapping
     public ResponseEntity<String> fireEmployee (@RequestParam Long id){
-        try{
-            employeeService.delete(id);
-            return ResponseEntity.ok("Employee has been fired");
+        if(employeeService.getById(id) == null){
+            return ResponseEntity.badRequest().body("User doesnt exist");
         }
-        catch(Exception e){
-            return ResponseEntity.badRequest().body("Can't fire this employee");
-        }
+        employeeService.delete(id);
+        return ResponseEntity.ok("Employee has been fired");
     }
 
     @GetMapping(path = "/get")
     public ResponseEntity getEmployeeById(@RequestParam Long id){
         try{
-            return ResponseEntity.ok( employeeService.getById(id));
+            return ResponseEntity.ok(employeeService.getById(id));
         }
         catch(Exception e){
             return ResponseEntity.badRequest().body("Such employee doesn't exist");

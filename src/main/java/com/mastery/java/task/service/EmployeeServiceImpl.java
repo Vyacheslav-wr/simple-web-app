@@ -46,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return newEmployee;
     }
 
-    public EmployeeDto getById(Long id) {
+    public EmployeeDto getById(Long id) throws NullPointerException{
         Employee employee = employeeDao.getById(id);
         try{
             EmployeeDto employeeDto = EmployeeDto.builder()
@@ -61,8 +61,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         catch (NullPointerException ex){
             ex.fillInStackTrace();
+            return  null;
         }
-        return  null;
     }
 
     public List<EmployeeDto> getAll() {
