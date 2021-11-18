@@ -19,7 +19,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Date;
 
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -64,7 +63,7 @@ public class EmployeeControllerTest {
 
         Mockito.when(employeeService.getById(employee.getId())).thenReturn(employeeDto);
         mockMvc.perform(MockMvcRequestBuilders
-                .delete("/employee/1"))
+                .delete("/employee?id=1"))
                 .andExpect(status().isOk());
     }
 
