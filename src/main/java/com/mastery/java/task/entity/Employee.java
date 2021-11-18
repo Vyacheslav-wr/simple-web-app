@@ -4,7 +4,7 @@ import com.mastery.java.task.dto.Gender;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -24,5 +24,5 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    private Date birthday;
+    private LocalDate birthday;
 }

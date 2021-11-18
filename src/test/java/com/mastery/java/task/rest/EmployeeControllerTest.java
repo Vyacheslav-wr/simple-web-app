@@ -34,14 +34,12 @@ public class EmployeeControllerTest {
 
     @Test
     public void hireEmployeeTest() throws Exception{
-        Date date = new Date();
         EmployeeDto employeeDto = EmployeeDto.builder()
                 .firstName("oleg")
                 .lastName("snark")
                 .department(2L)
                 .gender(Gender.MALE)
                 .jobTittle("teacher")
-                .birthday(date)
                 .build();
 
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
@@ -73,21 +71,21 @@ public class EmployeeControllerTest {
     @Test
     public void getEmployeeByIdTest() throws Exception{
         Employee employee = Employee.builder()
-                .id(3L)
+                .id(1L)
                 .build();
         EmployeeDto employeeDto = EmployeeDto.builder()
                 .firstName("andrei")
                 .build();
         Mockito.when(employeeService.getById(employee.getId())).thenReturn(employeeDto);
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/employee/get?id=3"))
+                .get("/employee?id=1"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void getAllEmployeesTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/employee"))
+                .get("/employee/all"))
                 .andExpect(status().isOk());
     }
 }

@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Builder
 @Data
@@ -17,5 +17,5 @@ public class EmployeeDto {
     private String lastName;
     private Long department;
     private String jobTittle;
-    private Date birthday;
+    private LocalDate birthday;
 }

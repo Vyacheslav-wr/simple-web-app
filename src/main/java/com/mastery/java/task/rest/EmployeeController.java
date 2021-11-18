@@ -5,6 +5,7 @@ import com.mastery.java.task.service.api.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/employee")
@@ -12,6 +13,8 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    private ModelAndView modelAndView;
 
     @PostMapping
     public ResponseEntity<String> hireEmployee(@RequestBody EmployeeDto employeeDto) {
@@ -24,32 +27,40 @@ public class EmployeeController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping()
     public ResponseEntity<String> fireEmployee (@RequestParam Long id){
         if(employeeService.getById(id) == null){
-            return ResponseEntity.badRequest().body("User doesnt exist");
+            return ResponseEntity.badRequest().body("Can't fire employee");
         }
         employeeService.delete(id);
         return ResponseEntity.ok("Employee has been fired");
     }
 
-    @GetMapping(path = "/get")
-    public ResponseEntity getEmployeeById(@RequestParam Long id){
+    @GetMapping()
+    public ModelAndView getEmployeeById(@RequestParam(name = "id") Long id){
+        modelAndView = new ModelAndView();
         try{
-            return ResponseEntity.ok(employeeService.getById(id));
+            modelAndView.addObject("employee",employeeService.getById(id));
+            modelAndView.setViewName("EmployeePage");
+            return modelAndView;
         }
         catch(Exception e){
-            return ResponseEntity.badRequest().body("Such employee doesn't exist");
+            modelAndView.setViewName("error");
+            return modelAndView;
         }
     }
 
-    @GetMapping
-    public ResponseEntity getAllEmployees(){
+    @GetMapping(path = "/all")
+    public ModelAndView getAllEmployees(){
+        modelAndView = new ModelAndView();
         try{
-            return ResponseEntity.ok(employeeService.getAll());
+            modelAndView.addObject("employees",employeeService.getAll());
+            modelAndView.setViewName("EmployeeList");
+            return modelAndView;
         }
         catch(Exception e){
-            return ResponseEntity.badRequest().body("There is no employees");
+            modelAndView.setViewName("error");
+            return modelAndView;
         }
     }
 }
