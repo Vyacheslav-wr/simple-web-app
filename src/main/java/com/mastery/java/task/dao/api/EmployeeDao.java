@@ -8,9 +8,9 @@ public interface EmployeeDao {
 
     Employee save(Employee employee);
 
-    void delete(Long id);
+    Employee delete(Long id);
 
-    void update(Employee newEmployee);
+    Employee update(Employee newEmployee);
 
     Employee getById(Long id);
 

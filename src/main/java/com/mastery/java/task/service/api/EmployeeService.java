@@ -1,18 +1,19 @@
 package com.mastery.java.task.service.api;
 
-import com.mastery.java.task.dto.EmployeeDto;
+import com.mastery.java.task.dto.CreateEmployeeDto;
+import com.mastery.java.task.dto.GetOrUpdateEmployeeDto;
 import com.mastery.java.task.entity.Employee;
 
 import java.util.List;
 
 public interface EmployeeService {
-    Employee save(EmployeeDto employeeDto);
+    Employee save(CreateEmployeeDto createEmployeeDto);
 
-    void delete(Long id);
+    Employee delete(Long id);
 
-    Employee update(EmployeeDto newEmployeeDto);
+    Employee update(Employee newEmployee);
 
-    EmployeeDto getById(Long id);
+    Employee getById(Long id);
 
-    List<EmployeeDto> getAll();
+    List<Employee> getAll();
 }

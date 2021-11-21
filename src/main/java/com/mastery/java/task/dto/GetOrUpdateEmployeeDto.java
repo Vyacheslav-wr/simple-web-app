@@ -1,18 +1,19 @@
 package com.mastery.java.task.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.time.LocalDate;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDto {
+public class GetOrUpdateEmployeeDto {
+    private Long id;
     private String firstName;
-    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String lastName;
     private Long department;

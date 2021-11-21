@@ -1,7 +1,8 @@
 package com.mastery.java.task.service;
 
 import com.mastery.java.task.dao.api.EmployeeDao;
-import com.mastery.java.task.dto.EmployeeDto;
+import com.mastery.java.task.dto.CreateEmployeeDto;
+import com.mastery.java.task.dto.GetOrUpdateEmployeeDto;
 import com.mastery.java.task.entity.Employee;
 import com.mastery.java.task.service.api.EmployeeService;
 import org.junit.Test;
@@ -24,8 +25,8 @@ public class EmployeeServiceTest {
 
     @Test
     public void saveTest(){
-        EmployeeDto employeeDto = Mockito.mock(EmployeeDto.class);
-        Employee employee = employeeService.save(employeeDto);
+        CreateEmployeeDto createEmployeeDto = Mockito.mock(CreateEmployeeDto.class);
+        Employee employee = employeeService.save(createEmployeeDto);
 
         Mockito.verify(employeeDao, Mockito.times(1)).save(employee);
     }
@@ -40,8 +41,8 @@ public class EmployeeServiceTest {
 
     @Test
     public void updateTest(){
-        EmployeeDto employeeDto = Mockito.mock(EmployeeDto.class);
-        Employee employee = employeeService.update(employeeDto);
+        Employee employee = Mockito.mock(Employee.class);
+        employeeService.update(employee);
 
         Mockito.verify(employeeDao, Mockito.times(1)).update(employee);
     }
