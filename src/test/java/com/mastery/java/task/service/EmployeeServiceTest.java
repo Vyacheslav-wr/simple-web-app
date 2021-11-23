@@ -2,7 +2,6 @@ package com.mastery.java.task.service;
 
 import com.mastery.java.task.dao.api.EmployeeDao;
 import com.mastery.java.task.dto.CreateEmployeeDto;
-import com.mastery.java.task.dto.GetOrUpdateEmployeeDto;
 import com.mastery.java.task.entity.Employee;
 import com.mastery.java.task.service.api.EmployeeService;
 import org.junit.Test;
@@ -26,7 +25,11 @@ public class EmployeeServiceTest {
     @Test
     public void saveTest(){
         CreateEmployeeDto createEmployeeDto = Mockito.mock(CreateEmployeeDto.class);
-        Employee employee = employeeService.save(createEmployeeDto);
+        Employee employee = Employee.builder()
+                .department(0L)
+                .build();
+
+        employeeService.save(createEmployeeDto);
 
         Mockito.verify(employeeDao, Mockito.times(1)).save(employee);
     }

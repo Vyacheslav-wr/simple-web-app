@@ -3,7 +3,6 @@ package com.mastery.java.task.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mastery.java.task.dto.CreateEmployeeDto;
 import com.mastery.java.task.dto.Gender;
-import com.mastery.java.task.dto.GetOrUpdateEmployeeDto;
 import com.mastery.java.task.entity.Employee;
 import com.mastery.java.task.service.api.EmployeeService;
 import org.junit.Test;
@@ -68,7 +67,7 @@ public class EmployeesControllerTest {
 
         Mockito.when(employeeService.getById(employee.getId())).thenReturn(employee);
         mockMvc.perform(MockMvcRequestBuilders
-                .delete("/employees?id=1"))
+                .delete("/employees/1"))
                 .andExpect(status().isOk());
     }
 
@@ -79,7 +78,7 @@ public class EmployeesControllerTest {
                 .build();
         Mockito.when(employeeService.getById(employee.getId())).thenReturn(employee);
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/employees?id=1"))
+                .get("/employees/1"))
                 .andExpect(status().isOk());
     }
 
